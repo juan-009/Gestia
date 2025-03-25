@@ -1,0 +1,30 @@
+# Framework principal para la API
+fastapi
+
+# Servidor ASGI
+uvicorn[standard]
+
+# Validación y Modelado de Datos
+pydantic          # Validación de datos y esquemas automáticos
+
+# Cliente HTTP para integraciones externas (si se conecta a otras APIs)
+httpx
+
+# Manejo de variables de entorno
+python-dotenv     # Gestión de configuraciones desde archivos .env
+
+# Procesamiento del Lenguaje Natural (NLP)
+transformers      # Modelos de NLP (si se integra Hugging Face en el futuro)
+torch             # Backend para modelos basados en PyTorch (opcional, solo si usamos NLP avanzado)
+nltk               # Funciones básicas para procesamiento de texto
+scikit-learn       # Análisis sencillo de texto y clustering (opcional)
+
+# Pruebas
+pytest             # Framework de pruebas
+pytest-asyncio     # Soporte para pruebas asíncronas
+
+# Generación de plantillas
+jinja2            # Renderización de plantillas para respuestas personalizadas
+
+# Seguridad (si se necesita autenticación en el agente virtual)
+python-jose[cryptography] # Autenticación JWT, si se implementa seguridad para los endpoints

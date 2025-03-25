@@ -1,0 +1,12 @@
+env/
+*.pyc
+__pycache__/
+.DS_Store
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log*
+yarn.lock
+package-lock.json
+.env
+mongodb_data

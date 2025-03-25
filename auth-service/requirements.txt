@@ -1,0 +1,31 @@
+# Framework principal para la API
+fastapi
+
+# Servidor ASGI
+uvicorn[standard]
+
+# Seguridad y Autenticación
+python-jose[cryptography]  # Manejo de JWT para autenticación
+passlib[bcrypt]            # Hashing seguro de contraseñas
+pyjwt                   # Alternativa para trabajar con tokens JWT
+
+# Validación y Modelado de Datos
+pydantic                  # Validación de datos y esquemas automáticos
+
+# Gestión de bases de datos
+sqlalchemy                # ORM para interactuar con PostgreSQL
+alembic                  # Migraciones de base de datos
+psycopg2-binary           # Controlador para PostgreSQL
+
+# Gestión de variables de entorno
+python-dotenv             # Carga de configuraciones desde archivos .env
+
+# Pruebas
+pytest                  # Framework de pruebas
+pytest-asyncio           # Soporte para pruebas asíncronas
+
+# Cliente HTTP (para integraciones futuras)
+httpx                     # Cliente HTTP para integraciones externas
+
+# Herramientas adicionales
+bcrypt                 # Biblioteca para hashing y comparación de contraseñas

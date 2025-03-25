@@ -1,0 +1,36 @@
+# Framework principal para la API
+fastapi
+
+# Servidor ASGI
+uvicorn[standard]
+
+# Bases de datos
+pymongo          # Cliente MongoDB para datos no estructurados
+sqlalchemy       # ORM para posibles integraciones con bases relacionales
+alembic            # Migraciones para bases SQL (si es necesario)
+
+# Machine Learning y análisis predictivo
+numpy              # Manejo de datos numéricos
+pandas              # Manipulación y análisis de datos tabulares
+scikit-learn       # Modelos de predicción y análisis de datos
+
+# Validación de datos
+pydantic          # Validación de datos y generación de esquemas automáticos
+
+# IoT y manejo de datos en tiempo real
+paho-mqtt          # Cliente MQTT para integración con sensores IoT
+pyserial          # Lectura de datos desde sensores físicos (opcional)
+
+# Seguridad (si se requieren autenticaciones internas o integraciones seguras)
+python-jose[cryptography] # JWT para validaciones si se protege alguna API
+python-dotenv            # Manejo de configuraciones desde .env
+
+# Cliente HTTP para comunicación externa
+httpx           # Utilizado para integraciones con servicios externos
+
+# Para pruebas
+pytest             # Framework de pruebas
+pytest-asyncio    # Soporte para pruebas asíncronas en FastAPI
+
+# Herramientas adicionales
+jinja2         # Opcional, útil para plantillas en reportes o notificaciones

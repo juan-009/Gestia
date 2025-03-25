@@ -1,0 +1,34 @@
+# Framework principal para la API
+fastapi
+
+# Servidor ASGI
+uvicorn[standard]
+
+# Gestión de bases de datos
+sqlalchemy          # ORM para PostgreSQL
+alembic             # Migraciones de base de datos
+psycopg2-binary      # Controlador para PostgreSQL
+
+# Validación y modelado de datos
+pydantic           # Validación de datos y generación automática de esquemas
+
+# Seguridad
+python-jose[cryptography]  # JWT para autenticación de usuarios
+passlib[bcrypt]           # Hashing de contraseñas
+
+# Gestión de variables de entorno
+python-dotenv           # Carga de configuraciones desde archivos .env
+
+# Cliente HTTP para integraciones externas (como LinkedIn, Gmail, etc.)
+httpx 
+
+# Para pruebas
+pytest                    # Framework de pruebas unitarias
+pytest-asyncio          # Soporte para pruebas asíncronas en FastAPI
+
+# Manejo de tareas asíncronas (si es necesario en automatizaciones)
+celery                  # Para manejar tareas programadas (opcional)
+redis                   # Broker para Celery (opcional, solo si usamos tareas asíncronas)
+
+# Herramientas adicionales
+jinja2                  # Plantillas para generación de correos o reportes (opcional)
