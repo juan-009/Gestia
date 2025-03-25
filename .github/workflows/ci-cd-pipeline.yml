@@ -1,0 +1,81 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Run Tests for all Microservices
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+          - ventas-service
+          - inventario-service
+          - auth-service
+          - agent-service
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies for ${{ matrix.service }}
+        working-directory: ./${{ matrix.service }}
+        run: |
+          python -m venv env
+          source env/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests for ${{ matrix.service }}
+        working-directory: ./${{ matrix.service }}
+        run: |
+          source env/bin/activate
+          pytest --maxfail=1 --disable-warnings -q
+
+  build:
+    name: Build Docker Images
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Build ventas-service Docker image
+        run: docker build -t ventas-service:latest ./ventas-service
+
+      - name: Build inventario-service Docker image
+        run: docker build -t inventario-service:latest ./inventario-service
+
+      - name: Build auth-service Docker image
+        run: docker build -t auth-service:latest ./auth-service
+
+      - name: Build agent-service Docker image
+        run: docker build -t agent-service:latest ./agent-service
+
+  deploy:
+    name: Deploy to Kubernetes
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v1
+
+      - name: Configure Kubeconfig
+        run: echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+
+      - name: Deploy Microservices to Kubernetes
+        run: kubectl apply -f kubernetes/
